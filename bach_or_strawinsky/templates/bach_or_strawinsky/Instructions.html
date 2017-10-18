@@ -1,0 +1,63 @@
+{% load otree_tags staticfiles %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'global/matrix.css' %}" />
+
+<div class="instructions well well-lg">
+
+    <h3 class="panel-sub-heading">
+        Instructions
+    </h3>
+
+    <p>
+        In this study, you will be paired randomly and anonymously with another participant. One of you will be
+        randomly designated being a "Bach person" and the other will be designated a "Strawinsky person". Prior to making a decision, you will
+        learn your role.
+    </p>
+
+    <p>
+        Both have two choices for an evening’s entertainment. Each can either go to a Bach concert
+         or to a Strawinsky concert. Each person wants to attend the concert of her favorite composer; however, to both it is more important that they go out together than that each see the preferred entertainment.
+    </p>
+
+    <p>
+        Each of you must independently and simultaneously make a decision. Your payoffs will be determined by both
+        choices as shown below:
+    </p>
+
+    <p>
+        <em>In each cell, the amount (in points) to the left is the payoff for the Strawinsky person and to the right for the Bach person.</em>
+
+    </p>
+
+    <div class="row">
+        <div class="col-md-7 col-md-offset-2">
+            <table class="table table-hover">
+                <tr>
+                    <th colspan="2"></th>
+                    <th colspan="2">Bach person</th>
+                </tr>
+                <tr>
+                    <th colspan="2"></th>
+                    <th>Bach</th>
+                    <th>Strawinsky</th>
+                </tr>
+                <tr>
+                    <th rowspan="2"><span class="rotate90">Strawinsky person</span> </th>
+                    <th>Bach</th>
+                    <td>{{ Constants.bach_strawinskyperson_payoff }}, {{ Constants.bach_bachperson_payoff }}</td>
+                    <td>{{ Constants.mismatch_payoff }}, {{ Constants.mismatch_payoff }} </td>
+                </tr>
+                <tr>
+                    <th>Strawinsky</th>
+                    <td>{{ Constants.mismatch_payoff }}, {{ Constants.mismatch_payoff }}</td>
+                    <td>{{ Constants.strawinsky_bachperson_payoff }}, {{ Constants.strawinsky_strawinskyperson_payoff }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <p>
+         For your convenience, these instructions will remain available to you on all subsequent screens of this study.
+    </p>
+
+</div>

@@ -1,0 +1,217 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+		]
+	},
+	"buffers":
+	[
+		{
+			"contents": "import os\nfrom os import environ\n\nimport dj_database_url\n\nimport otree.settings\n\n\nBASE_DIR = os.path.dirname(os.path.abspath(__file__))\n\n# the environment variable OTREE_PRODUCTION controls whether Django runs in\n# DEBUG mode. If OTREE_PRODUCTION==1, then DEBUG=False\nif environ.get('OTREE_PRODUCTION') not in {None, '', '0'}:\n    DEBUG = False\nelse:\n    DEBUG = True\n\nADMIN_USERNAME = 'admin'\n\n# for security, best to set admin password in an environment variable\nADMIN_PASSWORD = environ.get('OTREE_ADMIN_PASSWORD')\n\n# don't share this with anybody.\nSECRET_KEY = 'we%wk)w_3_349_d5w&nr(ea1u520fcj9=0^q#htm%p(*zju89$'\n\nDATABASES = {\n    'default': dj_database_url.config(\n        # Rather than hardcoding the DB parameters here,\n        # it's recommended to set the DATABASE_URL environment variable.\n        # This will allow you to use SQLite locally, and postgres/mysql\n        # on the server\n        # Examples:\n        # export DATABASE_URL=postgres://USER:PASSWORD@HOST:PORT/NAME\n        # export DATABASE_URL=mysql://USER:PASSWORD@HOST:PORT/NAME\n\n        # fall back to SQLite if the DATABASE_URL env var is missing\n        default='sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')\n    )\n}\n\n# AUTH_LEVEL:\n# If you are launching a study and want visitors to only be able to\n# play your app if you provided them with a start link, set the\n# environment variable OTREE_AUTH_LEVEL to STUDY.\n# If you would like to put your site online in public demo mode where\n# anybody can play a demo version of your game, set OTREE_AUTH_LEVEL\n# to DEMO. This will allow people to play in demo mode, but not access\n# the full admin interface.\n\nAUTH_LEVEL = environ.get('OTREE_AUTH_LEVEL')\n\n# setting for integration with AWS Mturk\nAWS_ACCESS_KEY_ID = environ.get('AWS_ACCESS_KEY_ID')\nAWS_SECRET_ACCESS_KEY = environ.get('AWS_SECRET_ACCESS_KEY')\n\n\n# e.g. EUR, CAD, GBP, CHF, CNY, JPY\nREAL_WORLD_CURRENCY_CODE = 'USD'\nUSE_POINTS = True\n\n\n# e.g. en, de, fr, it, ja, zh-hans\n# see: https://docs.djangoproject.com/en/1.9/topics/i18n/#term-language-code\nLANGUAGE_CODE = 'en'\n\n# if an app is included in SESSION_CONFIGS, you don't need to list it here\nINSTALLED_APPS = ['otree']\n\n# SENTRY_DSN = ''\n\nDEMO_PAGE_INTRO_TEXT = \"\"\"\nBV04 Beispiel Spiele\n\"\"\"\n\nROOMS = [\n    # {\n    #     'name': 'econ101',\n    #     'display_name': 'Econ 101 class',\n    #     'participant_label_file': '_rooms/econ101.txt',\n    # },\n    {\n        'name': 'live_demo',\n        'display_name': 'Room for live demo (no participant labels)',\n    },\n]\n\n\nmturk_hit_settings = {\n    'keywords': ['easy', 'bonus', 'choice', 'study'],\n    'title': 'Title for your experiment',\n    'description': 'Description for your experiment',\n    'frame_height': 500,\n    'preview_template': 'global/MTurkPreview.html',\n    'minutes_allotted_per_assignment': 60,\n    'expiration_hours': 7*24,  # 7 days\n    # 'grant_qualification_id': 'YOUR_QUALIFICATION_ID_HERE',# to prevent retakes\n    # to use qualification requirements, you need to uncomment the 'qualification' import\n    # at the top of this file.\n    'qualification_requirements': [],\n}\n\n# if you set a property in SESSION_CONFIG_DEFAULTS, it will be inherited by all configs\n# in SESSION_CONFIGS, except those that explicitly override it.\n# the session config can be accessed from methods in your apps as self.session.config,\n# e.g. self.session.config['participation_fee']\n\nSESSION_CONFIG_DEFAULTS = {\n    'real_world_currency_per_point': 0.000,\n    'participation_fee': 0.00,\n    'doc': \"\",\n    'mturk_hit_settings': mturk_hit_settings,\n}\n\n\nSESSION_CONFIGS = [\n{\n        'name': 'battle_of_the_sexes',\n        'display_name': \"Battle of the Sexes\",\n        'num_demo_participants': 2,\n        'app_sequence': [\n            'battle_of_the_sexes', 'payment_info'\n        ],\n},\n{\n        'name': 'guess_two_thirds',\n        'display_name': \"Guess 2/3 of the Average\",\n        'num_demo_participants': 3,\n        'app_sequence': ['guess_two_thirds', 'payment_info'],\n},\n{\n        'name': 'prisoner',\n        'display_name': \"Prisoner's Dilemma\",\n        'num_demo_participants': 2,\n        'app_sequence': ['prisoner', 'payment_info'],\n},\n{\n        'name': 'cournot',\n        'display_name': \"Cournot Competition\",\n        'num_demo_participants': 2,\n        'app_sequence': [\n            'cournot', 'payment_info'\n        ],\n},\n{\n        'name': 'matching_pennies',\n        'display_name': \"Matching Pennies\",\n        'num_demo_participants': 2,\n        'app_sequence': [\n            'matching_pennies',\n        ],\n},\n{\n        'name': 'bargaining',\n        'display_name': \"Bargaining Game\",\n        'num_demo_participants': 2,\n        'app_sequence': ['bargaining', 'payment_info'],\n},\n]\n\n# anything you put after the below line will override\n# oTree's default settings. Use with caution.\notree.settings.augment_settings(globals())\n",
+			"file": "settings.py",
+			"file_size": 4997,
+			"file_write_time": 131527443954692422,
+			"settings":
+			{
+				"buffer_size": 4835,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "Package Control: ",
+		"selected_items":
+		[
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 461.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/gerhard/otreeutils/otreeutils_example1/models.py",
+		"/home/gerhard/Projects/example_games/settings.py",
+		"/home/gerhard/Projects/Teaching/settings.py"
+	],
+	"find":
+	{
+		"height": 38.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "settings.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4835,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								208,
+								208
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 26.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "Teaching.sublime-project",
+	"replace":
+	{
+		"height": 48.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"~/Projects/example_games/Teaching.sublime-workspace"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
